@@ -1,0 +1,399 @@
+﻿@{
+    ViewBag.Title = "Sign Up";
+}
+
+<table>
+    <tr>
+
+        <td><a class="navbar-brand" href="~/Home/Index">Home</a><br /><br /><br /></td>
+        <td></td>
+
+    </tr>
+    <tr>
+        <td></td>
+
+        <td>
+            <div id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h1 class="text-center">New Registration</h1>
+                        </div>
+                        <div>
+                            <form action="../Account/validateSignup" method="post" enctype="multipart/form-data" class="form col-md-12 center-block">
+
+                                <br />
+
+
+                                <div>
+                                    <label for="username" class="col-md-3">
+                                        User Name:
+                                    </label>
+                                    <div class="col-md-8">
+
+
+
+                                        <input class="form-control" type="text" name="username" id="username" placeholder="Enter UserName" size="34" required />
+                                        <div id="result"></div><br />
+
+                                    </div>
+
+
+                                    <div class="col-md-1">
+                                        <i class="fa fa-lock fa-2x"></i>
+                                    </div>
+                                </div>
+
+                                <br />
+
+                                <div>
+                                    <label for="name" class="col-md-3">
+                                        First Name:
+                                    </label>
+                                    <div class="col-md-8">
+                                        <p><input type="text" class="form-control" name="fname" id="fname" placeholder="Enter First Name" size="34" required /></p>
+                                        @*@Html.TextBox("name", "", new { @class = "form-control", name = "name", id = "name", placeholder = "Enter Name", required = "required" })
+                                        @Html.ValidationMessageFor(model => model.name)*@
+
+                                        @*                            <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name" required>*@
+                                        <br />
+                                    </div>
+                                    <div class="col-md-1">
+                                        <i class="fa fa-lock fa-2x"></i>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label for="name" class="col-md-3">
+                                        Last Name:
+                                    </label>
+                                    <div class="col-md-8">
+                                        <p><input type="text" class="form-control" name="lname" id="lname" placeholder="Enter Last Name" size="34" required /></p>
+
+                                        <br />
+                                    </div>
+                                    <div class="col-md-1">
+                                        <i class="fa fa-lock fa-2x"></i>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label for="sex" class="col-md-3">
+                                        Gender:
+                                    </label>
+                                    <div class="col-md-8">
+                                        <label class="radio">
+                                            <input type="radio" name="gender" id="gender" value="male" checked>
+                                            Male
+                                        </label>
+                                        <label class="radio">
+                                            <input type="radio" name="gender" id="gender1" value="female">
+                                            Female
+                                        </label>
+                                        <br />
+                                    </div>
+                                </div>
+
+                                <br />
+
+                                <div>
+                                    <label for="name" class="col-md-3">
+                                        Date Of Birth:
+                                    </label>
+                                    <div class="col-md-8">
+                                        <p><input class="form-control" type="date" name="dob" id="dob" size="34" /></p>
+
+                                        <br />
+                                    </div>
+                                    <div class="col-md-1">
+                                        <i class="fa fa-lock fa-2x"></i>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label for="name" class="col-md-3">
+                                        Address:
+                                    </label>
+                                    <div class="col-md-8">
+                                        <p><input type="text" class="form-control" name="address" id="address" placeholder="Enter Address" size="34" required /></p>
+
+                                        <br />
+                                    </div>
+                                    <div class="col-md-1">
+                                        <i class="fa fa-lock fa-2x"></i>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label for="name" class="col-md-3">
+                                        Phone:
+                                    </label>
+                                    <div class="col-md-8">
+                                        <p><input type="text" class="form-control" name="phone" id="phone" size="34" placeholder="Enter Phone Number" onkeypress="return isNumberKey(event)" /></p>
+
+                                        <br />
+                                    </div>
+                                    <div class="col-md-1">
+                                        <i class="fa fa-lock fa-2x"></i>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label for="emailaddress" class="col-md-3">
+                                        Email address:
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input type="email" class="form-control" name="email" id="email" placeholder="Enter email address" required>
+                                        <p class="help-block">
+                                            Example: yourname@domain.com
+                                        </p>
+                                        <br />
+                                    </div>
+
+                                    <div class="col-md-1">
+                                        <i class="fa fa-lock fa-2x"></i>
+                                    </div>
+                                </div>
+
+
+                                <div>
+                                    <label for="password" class="col-md-3">
+                                        Password:
+                                    </label>
+                                    <div class="col-md-8">
+                                        
+                                        <input type="password" class="form-control" name="pwd" id="pwd" placeholder="Enter Password" required >
+                                        @*<p class="help-block">
+                                            Min: 6 characters (Alphanumeric only)
+                                        </p>*@
+                                        <br />
+                                    </div>
+                                    <div class="col-md-1">
+                                        <i class="fa fa-lock fa-2x"></i>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label for="password" class="col-md-3">
+                                        Confirm Password:
+                                    </label>
+                                    <div class="col-md-8">
+
+                                        <input type="password" class="form-control" name="cpwd" id="cpwd" placeholder="Enter Confirm Password" required>
+                                        @*<p class="help-block">
+                                            Min: 6 characters (Alphanumeric only)
+                                        </p>*@
+                                        <br />
+                                    </div>
+                                    <div class="col-md-1">
+                                        <i class="fa fa-lock fa-2x"></i>
+                                    </div>
+                                </div>
+
+
+                                <div>
+                                    <label for="sex" class="col-md-3">
+                                        Type:
+                                    </label>
+                                    <div class="col-md-8">
+                                        <label class="radio">
+                                            <input type="radio" name="type" id="type" value="student" checked>
+                                            Student
+                                        </label>
+                                        <label class="radio">
+                                            <input type="radio" name="type" id="type1" value="teacher">
+                                            Teacher
+                                        </label>
+                                        <br />
+                                    </div>
+                                </div>
+
+                                <br />
+
+                                <div>
+                                    <label for="country" class="col-md-3">
+                                        Security Question:
+                                    </label>
+                                    <div class="col-md-8">
+                                        <p>
+                                            <select name="question" id="question">
+                                                <option value="select1">Select one&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+                                                <option value="What is the Name of your Favourite uncle?">What is the Name of your Favourite uncle?</option>
+                                                <option value="What is the Name of Your Pet?">What is the Name of Your Pet?</option>
+                                                <option value="What is Your Favourite Place?">What is Your Favourite Place?</option>
+                                                <option value="What is Name of Your Favourite Book?">What is Name of Your Favourite Book?</option>
+                                                <option value="What is Your Oldest Cousin Name?">What is Your Oldest Cousin Name?</option>
+                                                <option value="What is Name of Your Favourite Teacher?">What is Name of Your Favourite Teacher?</option>
+                                                <option value="What was Your Favourite Food as a Child?">What was Your Favourite Food as a Child?</option>
+                                                <option value="Where You want to Spend Holidays?">Where You want to Spend Holidays?</option>
+                                                <option value="Who is Your Favourite Author?">Who is Your Favourite Author?</option>
+                                                <option value="Where did You Spend Your Honeymoon?">Where did You Spend Your Honeymoon?</option>
+                                                <option value="What is the Last Name of your First Boss?">What is the Last Name of your First Boss?</option>
+                                                <option value="What is Name of Your Favourite Musician?">What is Name of Your Favourite Musician?</option>
+                                                <option value="What is the Name of your Favourite aunt?">What is the Name of your Favourite aunt? &nbsp;</option>
+                                                <option value="What is the Name of Your Favourite Sports?">What is the Name of Your Favourite Sports?</option>
+                                            </select>
+                                        </p>
+                                        <br />
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label for="name" class="col-md-3">
+                                        Answer:
+                                    </label>
+                                    <div class="col-md-8">
+                                        <p><input type="text" class="form-control" name="answer" id="answer" size="34" placeholder="Enter Answer" /></p>
+                                        <br />
+                                    </div>
+                                    <div class="col-md-1">
+                                        <i class="fa fa-lock fa-2x"></i>
+                                    </div>
+                                </div>
+
+
+                                
+                                <div>
+                                    <label for="uploadimage" class="col-md-3">
+                                        Upload profile Image:
+                                    </label>
+                                    <div class="col-md-9">
+                                        <input type="file" name="path" id="path">
+                                        <br /><p class="help-block">
+                                            Allowed formats: jpeg, jpg, gif, png
+                                        </p><br />
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-3"></div>
+
+                                    <div class="col-md-3 form-group">
+                                        <br />
+                                        
+                                            <input type="submit" name="signup" id="signup" value="Register" class="btn btn-primary btn-lg btn-block" />
+                                            
+                                        
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <br />
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+
+
+                $(document).ready(function () {
+
+                    $('#username').blur(function () {
+
+                        var username = $('#username').val();
+                        if (username == "") {
+                            $('#result').text("Enter Username");
+                        }
+                        else {
+                            $.getJSON("Availability?u=" + username, function (data) {
+
+                                if (data == true) {
+
+                                    $('#result').text("User already exists in database");
+
+                                    $('#username').val("");
+                                }
+                                else {
+
+                                    $('#result').text("User Name is available");
+                                }
+                            });
+                        }
+                    });
+
+
+                });
+
+                //function checkPassword(evt) {
+
+                //    var pwd = Document.getElementById('pwd');
+                //    var cpwd = Document.getElementById('cpwd');
+                //    if (pwd != cpwd) {
+                //        return false;
+                //    }
+                //}
+
+
+                $('#signup').click(function () {
+
+                    var pwd = $('#pwd').val();
+                    var cpwd = $('#cpwd').val();
+
+                    if (pwd != cpwd) {
+                        $('#pwd').focus();
+                        $('#cpwd').text("");
+                        return false;
+                    }
+
+                    var username = $('#username').val();
+                    if (username == "") {
+                        $('#result').text("Enter Username");
+                        $('#username').focus();
+                        return false;
+                    }
+
+                    return true;
+                });
+
+
+                function isNumberKey(evt) {
+                    var charCode = (evt.which) ? evt.which : event.keyCode
+                    if (charCode > 31 && (charCode != 43 && charCode != 45 && charCode != 46 && (charCode < 48 || charCode > 57)))
+                        return false;
+                    return true;
+                }
+            </script>
+
+
+            <script>
+                (function (i, s, o, g, r, a, m) {
+                    i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                        (i[r].q = i[r].q || []).push(arguments)
+                    }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+                })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+                ga('create', 'UA-40413119-1', 'bootply.com');
+                ga('send', 'pageview');
+            </script>
+            <!-- Quantcast Tag -->
+            <script type="text/javascript">
+                var _qevents = _qevents || [];
+
+                (function () {
+                    var elem = document.createElement('script');
+                    elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge") + ".quantserve.com/quant.js";
+                    elem.async = true;
+                    elem.type = "text/javascript";
+                    var scpt = document.getElementsByTagName('script')[0];
+                    scpt.parentNode.insertBefore(elem, scpt);
+                })();
+
+                _qevents.push({
+                    qacct: "p-0cXb7ATGU9nz5"
+                });
+            </script>
+        </td>
+    </tr>
+</table>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

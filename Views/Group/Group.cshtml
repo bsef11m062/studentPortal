@@ -1,0 +1,402 @@
+﻿@model studentPortal.Models.group
+@{
+    var q1 = @Model.groupName.ToString();
+    ViewBag.Title = q1;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+
+    <div class="row">
+
+        <input type="hidden" id="hidden1" value="0" />
+        <!-- Group Entries Column -->
+        <div class="col-md-8">
+
+            <h1 class="col-md-offset-4" style="font-weight:bold">
+                @Model.groupName.ToString()
+            </h1>
+            <hr />
+            @if (Session["username"] != null)
+            {
+                
+                <ul class="nav nav-tabs" data-tabs="tabs">
+                            <li class="active"><a data-toggle="tab" href="#simple">Message</a></li>
+                            <li><a data-toggle="tab" href="#image">Image</a></li>
+                            <li><a data-toggle="tab" href="#video">Video</a></li>
+                            <li><a data-toggle="tab" href="#document">Document</a></li>
+                            
+                </ul>
+                
+                                        
+                <div class="tab-content">
+                    <div class="tab-pane active" id="simple">
+
+                        <div class="well well-sm">
+                            <form class="form-horizontal" name="f1" action="../User/createPost" method="post">
+                                <fieldset>
+
+                                    <br />
+                                    <!-- Name input-->
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" for="name">Title</label>
+                                        <div class="col-md-9">
+                                            <input id="title" name="title" type="text" placeholder="Post Title" class="form-control" required>
+                                        </div>
+                                    </div>
+
+                                    <!-- Message body -->
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" for="message">Your message</label>
+                                        <div class="col-md-9">
+                                            <textarea class="form-control" id="text" name="text" placeholder="Please enter your text here..." rows="5" onkeypress="isNumberKey(event)" required></textarea>
+                                            <input type="hidden" id="path" name="path" value="null" />
+                                            <input type="hidden" id="type" name="type" value="null" />
+                                        </div>
+                                    </div>
+
+                                    <input type="hidden" id="groupId" name="groupId" value="@Model.groupId.ToString()" />
+
+
+                                    <!-- Form actions -->
+                                    <div class="form-group">
+                                        <div class="col-md-12 text-right">
+                                            <button type="submit" class="btn btn-primary btn">POST</button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" id="image">
+
+
+                        <div class="well well-sm">
+                            <form class="form-horizontal" name="f1" action="../User/createPost" method="post" enctype="multipart/form-data">
+                                <fieldset>
+
+                                    <br />
+                                    <!-- Name input-->
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" for="name">Title</label>
+                                        <div class="col-md-9">
+                                            <input id="title" name="title" type="text" placeholder="Post Title" class="form-control" required>
+                                        </div>
+                                    </div>
+
+                                    <!-- Message body -->
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" for="message">Your message</label>
+                                        <div class="col-md-9">
+                                            <textarea class="form-control" id="text" name="text" placeholder="Please enter your text here..." rows="5" required onkeypress="isNumberKey(event)"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" for="message">Upload Image</label>
+                                        <div class="col-md-9">
+                                            <input type="file" class="form-control" id="path" name="path" required />
+                                            <input type="hidden" id="type" name="type" value="image" />
+
+                                        </div>
+                                    </div>
+
+
+                                    <input type="hidden" id="groupId" name="groupId" value="@Model.groupId.ToString()" />
+
+
+                                    <!-- Form actions -->
+                                    <div class="form-group">
+                                        <div class="col-md-12 text-right">
+                                            <button type="submit" class="btn btn-primary btn">POST</button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+
+                    
+
+                    <div class="tab-pane" id="video">
+
+
+                        <div class="well well-sm">
+                            <form class="form-horizontal" name="f1" action="../User/createPost" method="post" enctype="multipart/form-data">
+                                <fieldset>
+
+                                    <br />
+                                    <!-- Name input-->
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" for="name">Title</label>
+                                        <div class="col-md-9">
+                                            <input id="title" name="title" type="text" placeholder="Post Title" class="form-control" required>
+                                        </div>
+                                    </div>
+
+                                    <!-- Message body -->
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" for="message">Your message</label>
+                                        <div class="col-md-9">
+                                            <textarea class="form-control" id="text" name="text" placeholder="Please enter your text here..." rows="5" required onkeypress="isNumberKey(event)"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" for="message">Upload Video</label>
+                                        <div class="col-md-9">
+                                            <input type="file" class="form-control" id="path" name="path" required />
+                                            <input type="hidden" id="type" name="type" value="video" />
+
+                                        </div>
+                                    </div>
+
+
+                                    <input type="hidden" id="groupId" name="groupId" value="@Model.groupId.ToString()" />
+
+
+                                    <!-- Form actions -->
+                                    <div class="form-group">
+                                        <div class="col-md-12 text-right">
+                                            <button type="submit" class="btn btn-primary btn">POST</button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+
+
+                    <div class="tab-pane" id="document">
+
+
+                        <div class="well well-sm">
+                            <form class="form-horizontal" name="f1" action="../User/createPost" method="post" enctype="multipart/form-data">
+                                <fieldset>
+
+                                    <br />
+                                    <!-- Name input-->
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" for="name">Title</label>
+                                        <div class="col-md-9">
+                                            <input id="title" name="title" type="text" placeholder="Post Title" class="form-control" required>
+                                        </div>
+                                    </div>
+
+                                    <!-- Message body -->
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" for="message">Your message</label>
+                                        <div class="col-md-9">
+                                            <textarea class="form-control" id="text" name="text" placeholder="Please enter your text here..." rows="5" required onkeypress="isNumberKey(event)"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" for="message">Upload Document</label>
+                                        <div class="col-md-9">
+                                            <input type="file" class="form-control" id="path" name="path" required />
+                                            <input type="hidden" id="type" name="type" value="document" />
+
+                                        </div>
+                                    </div>
+
+
+                                    <input type="hidden" id="groupId" name="groupId" value="@Model.groupId.ToString()" />
+
+
+                                    <!-- Form actions -->
+                                    <div class="form-group">
+                                        <div class="col-md-12 text-right">
+                                            <button type="submit" class="btn btn-primary btn">POST</button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+            }
+
+            @for (int a = ViewBag.x.Count - 1; a >= 0; a--)
+            {
+                if (a >= ViewBag.x.Count || a < 0)
+                {
+                    break;
+                }
+                else
+                {
+
+                    <h2 id="t\@a">
+
+                        <!--get title from DB-->
+                        @ViewBag.x[a].title.ToString()
+                    </h2>
+                    <p>
+                        by <a href="#" id="u\@a">@ViewBag.x[a].owner.ToString()</a>
+                    </p>
+
+                    <p>
+                        <div id="dat\@a"><span class="glyphicon glyphicon-time"></span> Posted on @ViewBag.x[a].time.ToString()</div>
+                    </p>
+
+                    <hr>
+                    if (ViewBag.x[a].text.Length < 200)
+                    {
+                        <div id="d\@a">@ViewBag.x[a].text.ToString()</div>
+                    }
+                    else
+                    {
+                        <div id="d\@a">@ViewBag.x[a].text.Substring(0, 200)</div>
+                    }
+                    <br />
+
+
+                    if (ViewBag.x[a].type.ToString() == "image")
+                    {
+                        <a href="@ViewBag.x[a].path.ToString()" target="_blank"><img src="@ViewBag.x[a].path.ToString()" id="img\@a" width="200" height="200" /></a>
+                    }
+
+                    if (ViewBag.x[a].type.ToString() == "video")
+                    {
+                        <video width="315" height="240" controls>
+                            <source src="@ViewBag.x[a].path.ToString()" type="video/mp4">
+                            <source src="@ViewBag.x[a].path.ToString()" type="video/3gpp">
+                            <source src="@ViewBag.x[a].path.ToString()" type="video/m4v">
+                            <source src="@ViewBag.x[a].path.ToString()" type="video/webm">
+                            Your browser does not support the video tag.
+                        </video>
+                        
+                    }
+
+                    if (ViewBag.x[a].type.ToString() == "document")
+                    {
+                        <br />
+                        <a data-original-title="Broadcast Message" data-toggle="tooltip" href="@ViewBag.x[a].path.ToString()" type="button" class="btn btn-sm btn-primary" target="_blank">Download <i class="glyphicon glyphicon-download"></i></a>
+                    }
+
+                    <br />
+                    
+                    <button class="btn-link" id="like" name="like">Like  </button><span id="likes">@ViewBag.x[a].like</span>
+                    
+                    <button class="btn-link" id="dislike" name="dislike">Unlike  </button><span id="dislikes">@ViewBag.x[a].dislike</span>
+
+                    <br /><br />
+                
+                    <a class="btn btn-primary" href="../User/post?pid=@ViewBag.x[a].postId.ToString()" id="r\@a">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+            <input type="hidden" id="hide" value="@ViewBag.x[a].postId.ToString()">
+            
+                <hr>
+                }
+            }
+
+        </div>
+
+        <!-- Blog Sidebar Widgets Column -->
+        <div class="col-md-4">
+            <!--Search Well -->
+            <div class="well">
+                <h4>Search</h4>
+                <div class="input-group">
+                    <input type="text" class="form-control">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+                </div>
+                <!-- /.input-group -->
+            </div>
+
+            <!-- Categories Well -->
+            <div class="well">
+                <h4 style="font-weight:bold">Groups</h4>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <ul class="list-unstyled">
+                            @for (int a = 0; a < 6; a++)
+                            {
+                                if (a >= ViewBag.z.Count || a < 0)
+                                {
+                                    break;
+                                }
+                                <li>
+                                    <a href="../Group/Group?id=@ViewBag.z[a].groupId">@ViewBag.z[a].groupName.ToString()</a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+
+                </div>
+                <!-- /.row -->
+            </div>
+
+            <!-- Side Widget Well -->
+            <div class="well">
+                <h4 style="font-weight:bold">@Model.groupName.ToString()</h4>
+                <p>@Model.desc.ToString()</p>
+            </div>
+
+        </div>
+    </div>
+    <!-- /.row -->
+
+    <hr>
+</div>
+
+
+<script>
+
+    var v = $('#hide').val();
+
+    $('#like').click(function () {
+        
+        
+        var name = "@Session["username"]";
+        
+        if(name != "")
+        {
+            window.location = "../User/post?pid="+v;
+        }
+        else
+        {
+            window.location = "../Account/signin";
+        }
+
+    });
+
+    $('#dislike').click(function () {
+        var name = "@Session["username"]";
+        
+        if (name != "") {
+            window.location = "../User/post?pid=" + v;
+        }
+        else {
+            window.location = "../Account/signin";
+        }
+
+    });
+
+
+
+
+    //function isNumberKey(evt)
+    //{
+    //        var charCode = (evt.which) ? evt.which : event.keyCode
+    //        if (charCode == 13)
+    //        {
+    //            //alert("SANNAN");
+    //            var q = document.f1.text.value + "<br />";
+    //            document.f1.text.value = q;
+
+    //            alert("SANNAN2");
+    //        }
+    //}
+
+</script>

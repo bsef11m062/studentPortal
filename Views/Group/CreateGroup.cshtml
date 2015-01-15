@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "CreateGroup";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-md-8">
+
+            <h2>CreateGroup</h2>
+            <br /><br />
+
+            <div class="well well-sm">
+                <form class="form-horizontal" id="signinForm" action="../Group/SaveGroup" method="post">
+                    <fieldset>
+
+                        <br />
+                        <!-- Name input-->
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="name">Group Title</label>
+                            <div class="col-md-9">
+                                <input id="groupName" name="groupName" type="text" placeholder="Group Title" class="form-control">
+                            </div>
+                        </div>
+
+                        <!-- Message body -->
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="message">Description</label>
+                            <div class="col-md-9">
+                                <textarea class="form-control" id="desc" name="desc" placeholder="Please enter your text here..." rows="5" onkeypress="isNumberKey(event)"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Form actions -->
+                        <div class="form-group">
+                            <div class="col-md-12 text-right">
+                                <button type="submit" id="create" name="create" class="btn btn-primary btn">CREATE</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,1021 @@
+﻿@model studentPortal.Models.user
+@{
+    ViewBag.Title = "ProfilePage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="../Scripts/profile.js"></script>
+<link href="../Content/profile.css" rel="stylesheet" />
+<script src="~/Scripts/profile.js"></script>
+
+<br />
+
+<!-- Page Content -->
+
+
+    <div class="container">
+
+        <div class="row">
+
+            <!-- Blog Entries Column -->
+            <div class="col-md-8">
+
+                <h1 class="page-header">
+                    @Session["username"]'s Profile Page
+
+                    <small> </small>
+                </h1>
+
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-7 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-1 toppad">
+
+                            <ul class="nav nav-tabs" data-tabs="tabs">
+                                <li class="active"><a data-toggle="tab" href="#person">Personal Info</a></li>
+                                <li><a data-toggle="tab" href="#account">Account Info</a></li>
+                                <li><a data-toggle="tab" href="#education">Educational Background</a></li>
+                                @if (Model.type.Equals("teacher"))
+                                {
+                                    <li><a data-toggle="tab" href="#profession">Professional Background</a></li>
+                                }
+
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="person">
+                                    <h1>Personal Information</h1>
+                                    <br />
+                                    <div style="color:red" id="result"></div>
+                                    <div class="panel panel-info">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">@Model.fname.ToString() @Model.lname.ToString()</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <form action="../User/ProfilePic" id="form1" method="post" enctype="multipart/form-data">
+                                                    <div class="col-md-12 col-lg-12" align="center">
+                                                        <img id="img1" alt="User Pic" src="@Model.path.ToString()" height="100" width="100" class="img-circle">
+                                                        <input id="path" name="path" data-toggle="tooltip" type="file" class="btn btn-sm btn-primary path" value="Edit">
+                                                        <input type="hidden" id="hide1" name="hide1" />
+                                                        <button name="okImg" id="okImg" data-original-title="Broadcast Message" data-toggle="tooltip" type="submit" class="btn btn-sm btn-primary okImg">OK <i class="glyphicon glyphicon-ok"></i></button>
+                                                    </div>
+                                                </form>
+                                                    <div class="col-xs-10 col-sm-10 hidden-md hidden-lg">
+                                                        <br>
+
+                                                    </div>
+                                                    <div class=" col-md-9 col-lg-12 ">
+                                                        <table class="table table-user-information">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>First Name:</td>
+                                                                    <td id="fname1">@Model.fname.ToString()</td>
+                                                                    <td>
+                                                                        <button id="edit1" data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary">Edit  <i class="glyphicon glyphicon-edit"></i></button>
+                                                                        <a id="ok1" data-original-title="Broadcast Message" data-toggle="tooltip" href="#" type="button" class="btn btn-sm btn-primary">OK <i class="glyphicon glyphicon-ok"></i></a>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Last Name:</td>
+                                                                    <td id="lname1">@Model.lname.ToString()</td>
+                                                                    <td>
+                                                                        <button id="edit2" data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary">Edit  <i class="glyphicon glyphicon-edit"></i></button>
+                                                                        <a id="ok2" data-original-title="Broadcast Message" data-toggle="tooltip" href="#" type="button" class="btn btn-sm btn-primary">OK <i class="glyphicon glyphicon-ok"></i></a>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Date of Birth</td>
+                                                                    <td id="dob1">@Model.dob.ToString()</td>
+                                                                    <td>
+                                                                        <button id="edit3" data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary">Edit  <i class="glyphicon glyphicon-edit"></i></button>
+                                                                        <a id="ok3" data-original-title="Broadcast Message" data-toggle="tooltip" href="#" type="button" class="btn btn-sm btn-primary">OK <i class="glyphicon glyphicon-ok"></i></a>
+                                                                    </td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                <tr>
+                                                                    <td>Gender</td>
+                                                                    <td id="gender1">@Model.gender.ToString()</td>
+                                                                    <td>
+                                                                        <button id="edit4" data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary">Edit  <i class="glyphicon glyphicon-edit"></i></button>
+                                                                        <a id="ok4" data-original-title="Broadcast Message" data-toggle="tooltip" href="#" type="button" class="btn btn-sm btn-primary">OK <i class="glyphicon glyphicon-ok"></i></a>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Home Address</td>
+                                                                    <td id="address1">@Model.address.ToString()</td>
+                                                                    <td>
+                                                                        <button id="edit5" data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary">Edit  <i class="glyphicon glyphicon-edit"></i></button>
+                                                                        <a id="ok5" data-original-title="Broadcast Message" data-toggle="tooltip" href="#" type="button" class="btn btn-sm btn-primary">OK <i class="glyphicon glyphicon-ok"></i></a>
+                                                                    </td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td>Phone Number</td>
+                                                                    <td id="phone1">
+                                                                        @Model.phone.ToString()
+                                                                    </td>
+                                                                    <td>
+                                                                        <button id="edit7" data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary">Edit  <i class="glyphicon glyphicon-edit"></i></button>
+                                                                        <a id="ok7" data-original-title="Broadcast Message" data-toggle="tooltip" href="#" type="button" class="btn btn-sm btn-primary">OK <i class="glyphicon glyphicon-ok"></i></a>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+
+                                                    </div>
+</div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="tab-pane" id="account">
+                                    <h1>Account Information</h1>
+                                    <br />
+                                    <div style="color:red" id="result1"></div>
+                                    <div class="panel panel-info">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">@Model.fname.ToString() @Model.lname.ToString()</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <form action="../User/ProfilePic" id="form1" method="post" enctype="multipart/form-data">
+                                                    <div class="col-md-12 col-lg-12" align="center">
+                                                        <img id="img1" alt="User Pic" src="@Model.path.ToString()" height="100" width="100" class="img-circle">
+                                                        <input id="path1" name="path" data-toggle="tooltip" type="file" class="btn btn-sm btn-primary path" value="Edit">
+                                                        <input type="hidden" id="hide1" name="hide1" />
+                                                        <button name="okImg" id="okImg1" data-original-title="Broadcast Message" data-toggle="tooltip" type="submit" class="btn btn-sm btn-primary okImg">OK <i class="glyphicon glyphicon-ok"></i></button>
+                                                    </div>
+                                                </form>
+                                                <div class="col-xs-10 col-sm-10 hidden-md hidden-lg">
+                                                    <br>
+
+                                                </div>
+                                                <div class=" col-md-9 col-lg-12 ">
+                                                    <table class="table table-user-information">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>Username</td>
+                                                                <td id="username2">@Model.username.ToString()</td>
+
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Password</td>
+                                                                <td id="pwd2">********</td>
+                                                                <td>
+                                                                    <button id="edit9" data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary">Edit  <i class="glyphicon glyphicon-edit"></i></button>
+                                                                    <a id="ok9" data-original-title="Broadcast Message" data-toggle="tooltip" href="#" type="button" class="btn btn-sm btn-primary">OK <i class="glyphicon glyphicon-ok"></i></a>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Email Address</td>
+                                                                <td id="email2">@Model.email.ToString()</td>
+                                                                <td>
+                                                                    <button id="edit10" data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary">Edit  <i class="glyphicon glyphicon-edit"></i></button>
+                                                                    <a id="ok10" data-original-title="Broadcast Message" data-toggle="tooltip" href="#" type="button" class="btn btn-sm btn-primary">OK <i class="glyphicon glyphicon-ok"></i></a>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Account Type</td>
+                                                                <td id="type2">@Model.type.ToString()</td>
+                                                                <td>
+                                                                    <button id="edit11" data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary">Edit  <i class="glyphicon glyphicon-edit"></i></button>
+                                                                    <a id="ok11" data-original-title="Broadcast Message" data-toggle="tooltip" href="#" type="button" class="btn btn-sm btn-primary">OK <i class="glyphicon glyphicon-ok"></i></a>
+                                                                </td>
+                                                            </tr>
+
+
+                                                            <tr>
+                                                            <tr>
+                                                                <td>Security Question</td>
+                                                                <td id="question2">@Model.question.ToString()</td>
+                                                                <td>
+                                                                    <button id="edit12" data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary">Edit  <i class="glyphicon glyphicon-edit"></i></button>
+                                                                    <a id="ok12" data-original-title="Broadcast Message" data-toggle="tooltip" href="#" type="button" class="btn btn-sm btn-primary">OK <i class="glyphicon glyphicon-ok"></i></a>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Answer</td>
+                                                                <td id="answer2">@Model.answer.ToString()</td>
+                                                                <td>
+                                                                    <button id="edit13" data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary">Edit  <i class="glyphicon glyphicon-edit"></i></button>
+                                                                    <a id="ok13" data-original-title="Broadcast Message" data-toggle="tooltip" href="#" type="button" class="btn btn-sm btn-primary">OK <i class="glyphicon glyphicon-ok"></i></a>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Join Date</td>
+                                                                <td>@Model.joinDate.ToString()</td>
+
+                                                            </tr>
+
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+
+                                <div class="tab-pane" id="education">
+                                    <h1>Educational Background</h1>
+                                    <br />
+                                    <div style="color:red" id="result2"></div>
+
+                                    <div class="panel panel-info">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">@Model.fname.ToString() @Model.lname.ToString()</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <form action="../User/ProfilePic" id="form1" method="post" enctype="multipart/form-data">
+                                                    <div class="col-md-12 col-lg-12" align="center">
+                                                        <img id="img1" alt="User Pic" src="@Model.path.ToString()" height="100" width="100" class="img-circle">
+                                                        <input id="path2" name="path" data-toggle="tooltip" type="file" class="btn btn-sm btn-primary path" value="Edit">
+                                                        <input type="hidden" id="hide1" name="hide1" />
+                                                        <button name="okImg" id="okImg2" data-original-title="Broadcast Message" data-toggle="tooltip" type="submit" class="btn btn-sm btn-primary okImg">OK <i class="glyphicon glyphicon-ok"></i></button>
+                                                    </div>
+                                                </form>
+
+                                                <div class="col-xs-10 col-sm-10 hidden-md hidden-lg">
+                                                    <br>
+
+                                                </div>
+                                                <div class=" col-md-9 col-lg-12 ">
+                                                    <table class="table table-user-information">
+                                                        @{
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>Username:</td>
+                                                                    <td>@Model.username.ToString()</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Current Degree:</td>
+                                                                    <td id="degree3">@ViewBag.x.degree.ToString()</td>
+                                                                    <td>
+                                                                        <button id="edit14" data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary">Edit  <i class="glyphicon glyphicon-edit"></i></button>
+                                                                        <a id="ok14" data-original-title="Broadcast Message" data-toggle="tooltip" href="#" type="button" class="btn btn-sm btn-primary">OK <i class="glyphicon glyphicon-ok"></i></a>
+                                                                    </td>
+
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Experties</td>
+                                                                    <td id="experties3">@ViewBag.x.experties.ToString()</td>
+                                                                    <td>
+                                                                        <button id="edit15" data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary">Edit  <i class="glyphicon glyphicon-edit"></i></button>
+                                                                        <a id="ok15" data-original-title="Broadcast Message" data-toggle="tooltip" href="#" type="button" class="btn btn-sm btn-primary">OK <i class="glyphicon glyphicon-ok"></i></a>
+                                                                    </td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                <tr>
+                                                                    <td>Qualification</td>
+                                                                    <td id="qualification3">@ViewBag.x.qualification.ToString()</td>
+                                                                    <td>
+                                                                        <button id="edit16" data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary">Edit  <i class="glyphicon glyphicon-edit"></i></button>
+                                                                        <a id="ok16" data-original-title="Broadcast Message" data-toggle="tooltip" href="#" type="button" class="btn btn-sm btn-primary">OK <i class="glyphicon glyphicon-ok"></i></a>
+                                                                    </td>
+                                                                </tr>
+
+                                                            </tbody>
+
+                                                        }
+                                                    </table>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+
+                                @if (Model.type.Equals("teacher"))
+                                {
+                                    <div class="tab-pane" id="profession">
+                                        <h1>Professional Background</h1>
+                                        <br />
+                                        <div style="color:red" id="result3"></div>
+                                        <div class="panel panel-info">
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title">@Model.fname.ToString() @Model.lname.ToString()</h3>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <form action="../User/ProfilePic" id="form1" method="post" enctype="multipart/form-data">
+                                                        <div class="col-md-12 col-lg-12" align="center">
+                                                            <img id="img1" alt="User Pic" src="@Model.path.ToString()" height="100" width="100" class="img-circle">
+                                                            <input id="path3" name="path" data-toggle="tooltip" type="file" class="btn btn-sm btn-primary path" value="Edit">
+                                                            <input type="hidden" id="hide1" name="hide1" />
+                                                            <button name="okImg" id="okImg3" data-original-title="Broadcast Message" data-toggle="tooltip" type="submit" class="btn btn-sm btn-primary okImg">OK <i class="glyphicon glyphicon-ok"></i></button>
+                                                        </div>
+                                                    </form>
+
+                                                    <div class="col-xs-10 col-sm-10 hidden-md hidden-lg">
+                                                        <br>
+
+                                                    </div>
+                                                    <div class=" col-md-9 col-lg-12 ">
+                                                        <table class="table table-user-information">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>Username</td>
+                                                                    <td>@Model.username.ToString()</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Current Job</td>
+                                                                    <td id="job4">@ViewBag.x.workPlace.ToString()</td>
+                                                                    <td>
+                                                                        <button id="edit17" data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary">Edit  <i class="glyphicon glyphicon-edit"></i></button>
+                                                                        <a id="ok17" data-original-title="Broadcast Message" data-toggle="tooltip" href="#" type="button" class="btn btn-sm btn-primary">OK <i class="glyphicon glyphicon-ok"></i></a>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Teaching Experience</td>
+                                                                    <td id="experience4">@ViewBag.x.experience.ToString()</td>
+                                                                    <td>
+                                                                        <button id="edit18" data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary">Edit  <i class="glyphicon glyphicon-edit"></i></button>
+                                                                        <a id="ok18" data-original-title="Broadcast Message" data-toggle="tooltip" href="#" type="button" class="btn btn-sm btn-primary">OK <i class="glyphicon glyphicon-ok"></i></a>
+                                                                    </td>
+                                                                </tr>
+
+                                                            </tbody>
+                                                        </table>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+                                }
+
+                            </div>
+
+                            <br />
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- /.row -->
+        </div>
+        <hr>
+    </div>
+
+<script>
+    $('#ok1').hide();
+    $('#ok2').hide();
+    $('#ok3').hide();
+    $('#ok4').hide();
+    $('#ok5').hide();
+    $('#ok7').hide();
+    $('#ok8').hide();
+    $('#ok9').hide();
+    $('#ok10').hide();
+    $('#ok11').hide();
+    $('#ok12').hide();
+    $('#ok13').hide();
+    $('#ok14').hide();
+    $('#ok15').hide();
+    $('#ok16').hide();
+    $('#ok17').hide();
+    $('#ok18').hide();
+    $('.okImg').hide();
+
+    $('.path').click(function () {
+
+        $('.okImg').show();
+        $('.path').hide();
+        
+        $('#edit1').hide();
+        $('#edit2').hide();
+        $('#edit3').hide();
+        $('#edit4').hide();
+        $('#edit5').hide();
+        $('#edit7').hide();
+
+    });
+
+    $('.okImg').click(function () {
+        
+        $('.okImg').hide();
+        $('#edit1').show();
+        $('#edit2').show();
+        $('#edit3').show();
+        $('#edit4').show();
+        $('#edit5').show();
+        $('.path').show();
+        $('#edit7').show();
+        
+    });
+
+
+    $('#edit1').click(function () {
+        $('#ok1').show();
+        $('#edit1').hide();
+        $('#fname1').text(' ');
+        $('#fname1').append('<input type="text" name="fname" id="fname" placeholder="Enter First Name" size="20" required />');
+
+        $('#edit2').hide();
+        $('#edit3').hide();
+        $('#edit4').hide();
+        $('#edit5').hide();
+        $('#edit7').hide();
+
+    });
+
+    $('#ok1').click(function () {
+
+        var fname = $('#fname').val();
+
+        $.getJSON("UpdateProfile?f=" + fname + "&n=1", function (data) {
+            if (data == true) {
+                $('#result').text("First Name Edit successfully");
+                $('#fname1').text(' ' + fname);
+            }
+            else {
+
+                $('#result').text("Error: Please try Later");
+            }
+
+            $('#ok1').hide();
+            $('#edit1').show();
+            $('#edit2').show();
+            $('#edit3').show();
+            $('#edit4').show();
+            $('#edit5').show();
+            $('#edit7').show();
+        });
+
+    });
+
+    $('#edit2').click(function () {
+        $('#ok2').show();
+        $('#edit2').hide();
+        $('#lname1').text(' ');
+        $('#lname1').append('<input type="text" name="lname" id="lname" placeholder="Enter Last Name" size="20" required />');
+
+        $('#edit1').hide();
+        $('#edit3').hide();
+        $('#edit4').hide();
+        $('#edit5').hide();
+        $('#edit7').hide();
+
+    });
+
+    $('#ok2').click(function () {
+
+        var lname1 = $('#lname').val();
+
+        $.getJSON("UpdateProfile?f=" + lname1 + "&n=2", function (data) {
+            if (data == true) {
+                $('#result').text("Last Name Edit successfully");
+                $('#lname1').text(' ' + lname1);
+            }
+            else {
+
+                $('#result').text("Error: Please try Later");
+            }
+
+            $('#ok2').hide();
+            $('#edit1').show();
+            $('#edit2').show();
+            $('#edit3').show();
+            $('#edit4').show();
+            $('#edit5').show();
+            $('#edit7').show();
+        });
+
+    });
+
+
+
+    $('#edit3').click(function () {
+        $('#ok3').show();
+        $('#edit3').hide();
+        $('#dob1').text(' ');
+        $('#dob1').append('<input type="date" name="dob" id="dob" size="20" />');
+
+        $('#edit2').hide();
+        $('#edit1').hide();
+        $('#edit4').hide();
+        $('#edit5').hide();
+        $('#edit7').hide();
+    });
+
+    $('#ok3').click(function () {
+
+        var dob = $('#dob').val();
+
+        $.getJSON("UpdateProfile?f=" + dob + "&n=3", function (data) {
+            if (data == true) {
+                $('#result').text("Date of Birth Edit successfully");
+                $('#dob1').text(' ' + dob);
+            }
+            else {
+
+                $('#result').text("Error: Please try Later");
+            }
+
+            $('#ok3').hide();
+            $('#edit1').show();
+            $('#edit2').show();
+            $('#edit3').show();
+            $('#edit4').show();
+            $('#edit5').show();
+            $('#edit7').show();
+        });
+
+    });
+
+
+    $('#edit4').click(function () {
+        $('#ok4').show();
+        $('#edit4').hide();
+        $('#gender1').text(' ');
+        $('#gender1').append('<input type="radio" value="male" name="gender" checked /> Male  <br />' +
+                                        '<input type="radio" value="female" name="gender" /> Female <br /><br />');
+
+        $('#edit2').hide();
+        $('#edit3').hide();
+        $('#edit1').hide();
+        $('#edit5').hide();
+        $('#edit7').hide();
+    });
+
+    $('#ok4').click(function () {
+
+        var gender = $("input[name=gender]:checked").val();
+
+        $.getJSON("UpdateProfile?f=" + gender + "&n=4", function (data) {
+            if (data == true) {
+                $('#result').text("Gender Edit successfully");
+                $('#gender1').text(' ' + gender);
+            }
+            else {
+
+                $('#result').text("Error: Please try Later");
+            }
+
+            $('#ok4').hide();
+            $('#edit1').show();
+            $('#edit2').show();
+            $('#edit3').show();
+            $('#edit4').show();
+            $('#edit5').show();
+            $('#edit7').show();
+        });
+
+    });
+
+
+    $('#edit5').click(function () {
+        $('#ok5').show();
+        $('#edit5').hide();
+        $('#address1').text(' ');
+        $('#address1').append('<input type="text" name="address" id="address" size="20" placeholder="Enter Address" />');
+
+        $('#edit2').hide();
+        $('#edit3').hide();
+        $('#edit4').hide();
+        $('#edit1').hide();
+        $('#edit7').hide();
+    });
+
+    $('#ok5').click(function () {
+
+        var address = $('#address').val();
+
+        $.getJSON("UpdateProfile?f=" + address + "&n=5", function (data) {
+            if (data == true) {
+                $('#result').text("Address Edit successfully");
+                $('#address1').text(' ' + address);
+            }
+            else {
+
+                $('#result').text("Error: Please try Later");
+            }
+
+            $('#ok5').hide();
+            $('#edit1').show();
+            $('#edit2').show();
+            $('#edit3').show();
+            $('#edit4').show();
+            $('#edit5').show();
+            $('#edit7').show();
+        });
+
+    });
+
+
+    $('#edit7').click(function () {
+        $('#ok7').show();
+        $('#edit7').hide();
+        $('#phone1').text(' ');
+        $('#phone1').append('<input type="text" name="phone" id="phone" size="20" placeholder="Enter Phone Number" onkeypress="return isNumberKey(event)" />');
+
+        $('#edit2').hide();
+        $('#edit3').hide();
+        $('#edit4').hide();
+        $('#edit5').hide();
+        $('#edit1').hide();
+    });
+
+    $('#ok7').click(function () {
+
+        var phone = $('#phone').val();
+
+        $.getJSON("UpdateProfile?f=" + phone + "&n=7", function (data) {
+            if (data == true) {
+                $('#result').text("Phone Edit successfully");
+                $('#phone1').text(' ' + phone);
+
+            }
+            else {
+
+                $('#result').text("Error: Please try Later");
+            }
+            $('#ok7').hide();
+            $('#edit1').show();
+            $('#edit2').show();
+            $('#edit3').show();
+            $('#edit4').show();
+            $('#edit5').show();
+            $('#edit7').show();
+        });
+
+    });
+
+
+    $('#edit9').click(function () {
+        $('#ok9').show();
+        $('#edit9').hide();
+        $('#pwd2').text(' ');
+        $('#pwd2').append('<input type="password" name="pwd" id="pwd" placeholder="Enter Password" size="20" required />');
+
+        $('#edit10').hide();
+        $('#edit11').hide();
+        $('#edit12').hide();
+        $('#edit13').hide();
+    });
+
+    $('#ok9').click(function () {
+
+        var pwd = $('#pwd').val();
+
+        $.getJSON("UpdateProfile?f=" + pwd + "&n=9", function (data) {
+            if (data == true) {
+                $('#result1').text("Password Edit successfully");
+                $('#pwd2').text('********');
+
+            }
+            else {
+
+                $('#result1').text("Error: Please try Later");
+            }
+
+            $('#ok9').hide();
+            $('#edit9').show();
+            $('#edit10').show();
+            $('#edit11').show();
+            $('#edit12').show();
+            $('#edit13').show();
+        });
+
+    });
+
+
+    $('#edit10').click(function () {
+        $('#ok10').show();
+        $('#edit10').hide();
+        $('#email2').text(' ');
+        $('#email2').append('<input type="email" name="email" id="email" placeholder="Enter Email Address" size="20" required />');
+
+        $('#edit9').hide();
+        $('#edit11').hide();
+        $('#edit12').hide();
+        $('#edit13').hide();
+    });
+
+    $('#ok10').click(function () {
+
+        var email = $('#email').val();
+
+        $.getJSON("UpdateProfile?f=" + email + "&n=10", function (data) {
+            if (data == true) {
+                $('#result1').text("Email Edit successfully");
+                $('#email2').text(' ' + email);
+
+            }
+            else {
+
+                $('#result1').text("Error: Please try Later");
+            }
+            $('#ok10').hide();
+            $('#edit9').show();
+            $('#edit10').show();
+            $('#edit11').show();
+            $('#edit12').show();
+            $('#edit13').show();
+        });
+
+    });
+
+    $('#edit11').click(function () {
+        $('#ok11').show();
+        $('#edit11').hide();
+        $('#type2').text(' ');
+        $('#type2').append('<input type="radio" value="student" name="type" id="type" checked /> Student  <br />' +
+                           '<input type="radio" value="teacher" name="type" id="type1" /> Teacher <br />');
+
+        $('#edit10').hide();
+        $('#edit9').hide();
+        $('#edit12').hide();
+        $('#edit13').hide();
+    });
+
+    $('#ok11').click(function () {
+
+        var type = $("input[name=type]:checked").val();
+
+        $.getJSON("UpdateProfile?f=" + type + "&n=11", function (data) {
+            if (data == true) {
+                $('#result1').text("Type Edit successfully");
+                $('#type2').text(' ' + type);
+                location.reload();
+
+            }
+            else {
+
+                $('#result1').text("Error: Please try Later");
+            }
+            $('#ok11').hide();
+            $('#edit9').show();
+            $('#edit10').show();
+            $('#edit11').show();
+            $('#edit12').show();
+            $('#edit13').show();
+        });
+
+    });
+    $('#edit12').click(function () {
+        $('#ok12').show();
+        $('#edit12').hide();
+        $('#question2').text(' ');
+        $('#question2').append('<select name="question" id="question">' +
+                                '<option value="select1">Select one&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>' +
+                                '<option value="What is the Name of your uncle?">What is the Name of your uncle?</option>' +
+                                '<option value="What is the Name of Your Pet?">What is the Name of Your Pet?</option>' +
+                                '<option value="What is Your Favourite Place?">What is Your Favourite Place?</option>' +
+                                '<option value="Which book is Your Favourite?">Which book is Your Favourite?</option>' +
+                                '<option value="What is Your Oldest Cousin Name?">What is Your Oldest Cousin Name?</option>' +
+                                '<option value="What is Name of Your Teacher?">What is Name of Your Teacher?</option>' +
+                                '<option value="What is Your Favourite Food?">What is Your Favourite Food?</option>' +
+                                '<option value="Where You want to Spend Holidays?">Where You want to Spend Holidays?</option>' +
+                                '<option value="Who is Your Favourite Author?">Who is Your Favourite Author?</option>' +
+                                '<option value="Where You Spend Honeymoon?">Where You Spend Honeymoon?</option>' +
+                                '<option value="What is the Name of your Boss?">What is the Last Name of your Boss?</option>' +
+                                '<option value="Who is Your Favourite Musician?">Who is Your Favourite Musician?</option>' +
+                                '<option value="What is the Name of your aunt?">What is the Name of your aunt? &nbsp;</option>' +
+                                '<option value="What is Your Favourite Sports?">Which is Your Favourite Sports?</option>' +
+                                '</select>');
+
+        $('#edit10').hide();
+        $('#edit11').hide();
+        $('#edit9').hide();
+        $('#edit13').hide();
+    });
+
+    $('#ok12').click(function () {
+
+        var question = $('#question').val();
+
+        $.getJSON("UpdateProfile?f=" + question + "&n=12", function (data) {
+            if (data == true) {
+                $('#result1').text("Question Edit successfully");
+                $('#question2').text(' ' + question);
+
+            }
+            else {
+
+                $('#result1').text("Error: Please try Later");
+            }
+            $('#ok12').hide();
+            $('#edit9').show();
+            $('#edit10').show();
+            $('#edit11').show();
+            $('#edit12').show();
+            $('#edit13').show();
+        });
+
+    });
+
+    $('#edit13').click(function () {
+        $('#ok13').show();
+        $('#edit13').hide();
+        $('#answer2').text(' ');
+        $('#answer2').append('<input type="text" name="answer" id="answer" size="20" placeholder="Enter Answer"/>');
+
+        $('#edit10').hide();
+        $('#edit11').hide();
+        $('#edit12').hide();
+        $('#edit9').hide();
+    });
+
+    $('#ok13').click(function () {
+
+        var answer = $('#answer').val();
+
+        $.getJSON("UpdateProfile?f=" + answer + "&n=13", function (data) {
+            if (data == true) {
+                $('#result1').text("Answer Edit successfully");
+                $('#answer2').text(' ' + answer);
+
+            }
+            else {
+
+                $('#result1').text("Error: Please try Later");
+            }
+            $('#ok13').hide();
+            $('#edit9').show();
+            $('#edit10').show();
+            $('#edit11').show();
+            $('#edit12').show();
+            $('#edit13').show();
+        });
+
+    });
+
+
+    $('#edit14').click(function () {
+        $('#ok14').show();
+        $('#edit14').hide();
+        $('#degree3').text(' ');
+        $('#degree3').append('<input type="text" name="degree" id="degree" size="20" placeholder="Enter Current Degree"/>');
+
+        $('#edit15').hide();
+        $('#edit16').hide();
+    });
+
+    $('#ok14').click(function () {
+
+        var degree = $('#degree').val();
+
+        $.getJSON("UpdateEducation?f=" + degree + "&n=14", function (data) {
+            if (data == true) {
+                $('#result2').text("Degree Edit successfully");
+                $('#degree3').text(' ' + degree);
+
+            }
+            else {
+
+                $('#result2').text("Error: Please try Later");
+            }
+            $('#ok14').hide();
+            $('#edit14').show();
+            $('#edit15').show();
+            $('#edit16').show();
+        });
+
+    });
+
+    $('#edit15').click(function () {
+        $('#ok15').show();
+        $('#edit15').hide();
+        $('#experties3').text(' ');
+        $('#experties3').append('<input type="text" name="experties" id="experties" size="20" placeholder="Enter your Experties"/>');
+
+        $('#edit14').hide();
+        $('#edit16').hide();
+    });
+
+    $('#ok15').click(function () {
+
+        var experties = $('#experties').val();
+
+        $.getJSON("UpdateEducation?f=" + experties + "&n=15", function (data) {
+            if (data == true) {
+                $('#result2').text("Experties Edit successfully");
+                $('#experties3').text(' ' + experties);
+
+            }
+            else {
+
+                $('#result2').text("Error: Please try Later");
+            }
+            $('#ok15').hide();
+            $('#edit14').show();
+            $('#edit15').show();
+            $('#edit16').show();
+        });
+
+    });
+
+    $('#edit16').click(function () {
+        $('#ok16').show();
+        $('#edit16').hide();
+        $('#qualification3').text(' ');
+        $('#qualification3').append('<input type="text" name="qualification" id="qualification" size="20" placeholder="Enter your Qualification"/>');
+
+        $('#edit14').hide();
+        $('#edit15').hide();
+    });
+
+    $('#ok16').click(function () {
+
+        var qualification = $('#qualification').val();
+
+        $.getJSON("UpdateEducation?f=" + qualification + "&n=16", function (data) {
+            if (data == true) {
+                $('#result2').text("Qualification Edit successfully");
+                $('#qualification3').text(' ' + qualification);
+
+            }
+            else {
+
+                $('#result2').text("Error: Please try Later");
+            }
+            $('#ok16').hide();
+            $('#edit14').show();
+            $('#edit15').show();
+            $('#edit16').show();
+        });
+
+    });
+
+    $('#edit17').click(function () {
+        $('#ok17').show();
+        $('#edit17').hide();
+        $('#job4').text(' ');
+        $('#job4').append('<input type="text" name="job" id="job" size="20" placeholder="Enter your Current Job"/>');
+
+        $('#edit18').hide();
+    });
+
+    $('#ok17').click(function () {
+
+        var job = $('#job').val();
+
+        $.getJSON("UpdateEducation?f=" + job + "&n=17", function (data) {
+            if (data == true) {
+                $('#result3').text("Job Edit successfully");
+                $('#job4').text(' ' + job);
+
+            }
+            else {
+
+                $('#result3').text("Error: Please try Later");
+            }
+            $('#ok17').hide();
+            $('#edit17').show();
+            $('#edit18').show();
+        });
+
+    });
+
+    $('#edit18').click(function () {
+        $('#ok18').show();
+        $('#edit18').hide();
+        $('#experience4').text(' ');
+        $('#experience4').append('<input type="text" name="experience" id="experience" size="20" placeholder="Enter Work Experience"/>');
+
+        $('#edit17').hide();
+    });
+
+    $('#ok18').click(function () {
+
+        var experience = $('#experience').val();
+
+        $.getJSON("UpdateEducation?f=" + experience + "&n=18", function (data) {
+            if (data == true) {
+                $('#result3').text("Experience Edit successfully");
+                $('#experience4').text(' ' + experience);
+
+            }
+            else {
+
+                $('#result3').text("Error: Please try Later");
+            }
+            $('#ok18').hide();
+            $('#edit17').show();
+            $('#edit18').show();
+        });
+
+    });
+
+
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode != 43 && charCode != 45 && charCode != 46 && (charCode < 48 || charCode > 57)))
+            return false;
+        return true;
+    }
+</script>

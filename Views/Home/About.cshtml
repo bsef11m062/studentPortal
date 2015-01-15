@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "About Us";
+}
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-8">
+
+            <h2>About Us</h2>
+        </div>
+
+        <div class="col-md-8" style="font-weight:normal">
+            <img src="../Images/about1.jpg" width="700" />
+            <br /><br />
+            <p>
+                We are here to serve you and provide you the best websites.<br /><br />
+                We developed this Web-Portal to Provide a platform for student so that they used this
+                for educational purpose.
+            </p>
+
+            <p>We M.Sannan Khurshid and Asad Ullah Ilyas are Software Engineers and Developed this Web-Portal when we were internee at Artificial Intelligence and Multidisciplinary(AIM) Research Lab PUCIT Lahore after 6 semester of BS(Software Engineering).</p>
+        </div>
+
+
+            <!-- Blog Sidebar Widgets Column -->
+            <div class="col-sm-offset-8">
+                <!--Search Well -->
+                <div class="well">
+                    <h4>Search</h4>
+                    <div class="input-group">
+                        <input type="text" class="form-control">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                    </div>
+                    <!-- /.input-group -->
+                </div>
+
+                <!-- Categories Well -->
+                <div class="well">
+                    <h4 style="font-weight:bold">Groups</h4>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <ul class="list-unstyled">
+                                @for (int a = 0; a < 6; a++)
+                                {
+                                    if (a >= ViewBag.z.Count || a < 0)
+                                    {
+                                        break;
+                                    }
+                                    <li>
+                                        <a href="../Group/Group?id=@ViewBag.z[a].groupId">@ViewBag.z[a].groupName.ToString()</a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+
+                    </div>
+                    <!-- /.row -->
+                </div>
+
+            </div>
+        </div>
+</div>
